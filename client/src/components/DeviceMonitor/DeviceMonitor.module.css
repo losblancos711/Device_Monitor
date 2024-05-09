@@ -1,0 +1,21 @@
+.statusBar {
+  padding: 16px 24px 16px 24px;
+  vertical-align: middle;
+  background-color: #fff;
+  border-radius: 8px;
+  margin: 15px 0;
+}
+
+.statusBarContent {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 16px;
+  font-size: 14px !important;
+  font-weight: 400;
+  line-height: 24px;
+  letter-spacing: -0.20000000298023224px;
+  text-align: left;
+}

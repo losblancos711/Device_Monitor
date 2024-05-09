@@ -1,0 +1,73 @@
+.paginationContainer {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  padding: 20px;
+}
+
+.tableContainer {
+  border-radius: 8px;
+}
+
+.search {
+  max-height: 32px;
+  min-width: 240px;
+  padding-right: 45px;
+}
+
+.tableContainer .searchIcon {
+  position: absolute;
+  right: 90px;
+  top: 5px;
+  background-color: transparent;
+  padding: 0;
+}
+
+.tableContainer th {
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 24px;
+  letter-spacing: -0.20000000298023224px;
+  text-align: left;
+}
+
+.tableContainer td {
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 20px;
+  letter-spacing: -0.20000000298023224px;
+}
+
+.tableContainer .viewBtn {
+  max-width: 48px;
+  height: 28px;
+  padding: 8px;
+  border-radius: 8px;
+  border: none;
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 20px;
+  color: #2d3540;
+  background-color: #e6ecf0;
+}
+
+.tableContainer .dummyFilterBtn {
+  background: #e6ecf0;
+  border-radius: 8px !important;
+  padding: 6px 10px 6px 8px;
+  border-radius: 8px 0px 0px 0px;
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 20px;
+  letter-spacing: -0.20000000298023224px;
+  color: #2d3540;
+  margin-left: 15px;
+  text-transform: capitalize;
+  height: 32px;
+}
+
+.tableContainer .dummyFilterBtn img {
+  margin-right: 5px;
+}

@@ -1,0 +1,17 @@
+.header {
+  padding: 20px 25px;
+  vertical-align: middle;
+}
+
+.header h4 {
+  font-size: 28px;
+  font-weight: 500;
+  line-height: 40px;
+  color: #2d3540;
+}
+
+.loaderContainer {
+  display: flex;
+  margin-top: 50px;
+  justify-content: space-around;
+}
