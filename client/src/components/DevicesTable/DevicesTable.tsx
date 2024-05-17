@@ -125,7 +125,7 @@ export const DevicesTable = ({ tableData }: DevicesTableProps) => {
   }, [currentPage, currentPageSize, rows?.length]);
 
   const debounce = (cb: CallableFunction, delay: number) => {
-    let debounceTimer: ReturnType<typeof setTimeout>;
+    let debounceTimer: NodeJS.Timeout;
     return (...args: any[]) => {
       clearTimeout(debounceTimer);
       debounceTimer = setTimeout(() => {
