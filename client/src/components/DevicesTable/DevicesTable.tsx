@@ -94,10 +94,6 @@ interface DevicesTableProps {
   tableData: Device[];
 }
 
-interface MyCallback {
-  (): void;
-}
-
 export const DevicesTable = ({ tableData }: DevicesTableProps) => {
   const initialRows = tableData?.map((td) =>
     createData(
@@ -134,16 +130,18 @@ export const DevicesTable = ({ tableData }: DevicesTableProps) => {
     };
   };
 
-  const updateFilterText = debounce((key?: string) => {
+  const updateSearchedRows = debounce((key: string) => {
     const newRows = tableData.filter((row) =>
-      row?.theatreName?.toLowerCase()?.includes(key || "")
+      row?.theatreName?.toLowerCase()?.includes(key)
     );
     setRows(newRows);
   }, 500);
 
   const searchHandler = (e: ChangeEvent<HTMLInputElement>) => {
-    let key = e?.target?.value?.toLowerCase();
-    updateFilterText(key);
+    const key = e?.target?.value?.toLowerCase();
+    if (key) {
+      updateSearchedRows(key);
+    }
   };
 
   return (
