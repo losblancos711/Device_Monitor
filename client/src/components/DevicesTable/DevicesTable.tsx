@@ -94,6 +94,10 @@ interface DevicesTableProps {
   tableData: Device[];
 }
 
+interface MyCallback {
+  (): void;
+}
+
 export const DevicesTable = ({ tableData }: DevicesTableProps) => {
   const initialRows = tableData?.map((td) =>
     createData(
@@ -120,16 +124,26 @@ export const DevicesTable = ({ tableData }: DevicesTableProps) => {
     return rows.slice(firstPageIndex, lastPageIndex);
   }, [currentPage, currentPageSize, rows?.length]);
 
+  const debounce = (cb: any, delay: number) => {
+    let debounceTimer: ReturnType<typeof setTimeout>;
+    return (...args: any) => {
+      clearTimeout(debounceTimer);
+      debounceTimer = setTimeout(() => {
+        cb(...args);
+      }, delay);
+    };
+  };
+
+  const updateFilterText = debounce((key?: string) => {
+    const newRows = tableData.filter((row) =>
+      row?.theatreName?.toLowerCase()?.includes(key || "")
+    );
+    setRows(newRows);
+  }, 1000);
+
   const searchHandler = (e: ChangeEvent<HTMLInputElement>) => {
     let key = e?.target?.value?.toLowerCase();
-
-    // debouncing for smooth user exerience
-    setTimeout(() => {
-      const newRows = tableData.filter((row) =>
-        row?.theatreName?.toLowerCase()?.includes(key)
-      );
-      setRows(newRows);
-    }, 500);
+    updateFilterText(key);
   };
 
   return (
