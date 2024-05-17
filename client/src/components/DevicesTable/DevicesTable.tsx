@@ -124,9 +124,9 @@ export const DevicesTable = ({ tableData }: DevicesTableProps) => {
     return rows.slice(firstPageIndex, lastPageIndex);
   }, [currentPage, currentPageSize, rows?.length]);
 
-  const debounce = (cb: any, delay: number) => {
+  const debounce = (cb: CallableFunction, delay: number) => {
     let debounceTimer: ReturnType<typeof setTimeout>;
-    return (...args: any) => {
+    return (...args: any[]) => {
       clearTimeout(debounceTimer);
       debounceTimer = setTimeout(() => {
         cb(...args);
@@ -139,7 +139,7 @@ export const DevicesTable = ({ tableData }: DevicesTableProps) => {
       row?.theatreName?.toLowerCase()?.includes(key || "")
     );
     setRows(newRows);
-  }, 1000);
+  }, 500);
 
   const searchHandler = (e: ChangeEvent<HTMLInputElement>) => {
     let key = e?.target?.value?.toLowerCase();
