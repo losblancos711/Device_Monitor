@@ -31,7 +31,7 @@ function createData(
   avgBandwidth?: string,
   deviceStatus?: DEVICESTATUS | string,
   downloadStatus?: DOWNLOADSTATUS | string,
-  osVersion?: string
+  osVersion?: string,
 ): Device {
   return {
     id,
@@ -105,8 +105,8 @@ export const DevicesTable = ({ tableData }: DevicesTableProps) => {
       td?.avgBandwidth,
       td?.deviceStatus,
       td?.downloadStatus,
-      td?.osVersion
-    )
+      td?.osVersion,
+    ),
   );
 
   const [rows, setRows] = useState(initialRows);
@@ -130,18 +130,21 @@ export const DevicesTable = ({ tableData }: DevicesTableProps) => {
     };
   };
 
-  const updateSearchedRows = debounce((key: string) => {
-    const newRows = tableData.filter((row) =>
-      row?.theatreName?.toLowerCase()?.includes(key)
-    );
-    setRows(newRows);
+  const updateSearchedRows = debounce((searchKey?: string) => {
+    if (searchKey) {
+      setRows(
+        tableData.filter((row) =>
+          row?.theatreName?.toLowerCase()?.includes(searchKey),
+        ),
+      );
+    } else {
+      setRows(initialRows);
+    }
   }, 500);
 
   const searchHandler = (e: ChangeEvent<HTMLInputElement>) => {
-    const key = e?.target?.value?.toLowerCase();
-    if (key) {
-      updateSearchedRows(key);
-    }
+    const searchKey = e?.target?.value?.toLowerCase();
+    updateSearchedRows(searchKey);
   };
 
   return (
@@ -152,7 +155,7 @@ export const DevicesTable = ({ tableData }: DevicesTableProps) => {
             <OutlinedInput
               onChange={searchHandler}
               className={styles.search}
-              placeholder="Search Theatre"
+              placeholder="Search Location"
             />
             <IconButton disabled className={styles.searchIcon} size="small">
               <Search />
@@ -229,7 +232,7 @@ export const DevicesTable = ({ tableData }: DevicesTableProps) => {
                     <div
                       style={{
                         backgroundColor: computeDownStatusColor(
-                          row?.downloadStatus
+                          row?.downloadStatus,
                         ),
                         width: "8px",
                         height: "8px",
